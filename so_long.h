@@ -13,6 +13,10 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# if defined(__APPLE__)
+#  define AUDIO "/usr/bin/afplay", "--volume", "1"
+#endif
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -29,6 +33,7 @@ typedef struct s_list {
 	int		coins;
 	int		p_x;
 	int		p_y;
+	int32_t				pid;
 	int		door_x;
 	int		door_y;
 	int		score;
@@ -65,6 +70,7 @@ typedef struct s_list {
 	void	*exit;
 }				t_list;
 
+void	sound(char *args[]);
 int		check_all(int argc, char **argv, t_list *game);
 int		ft_error_print(char *str);
 char	**map_r(char *file);

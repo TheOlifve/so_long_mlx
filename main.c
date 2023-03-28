@@ -22,15 +22,17 @@ int	ft_exit(int	key, t_list *game)
 int	main(int argc, char **argv)
 {
 	t_list	game;
+	const char	*audio[] = {AUDIO, "./sprites/girl/hearteater.wav", NULL};
 
 	ft_memset(&game, 0, sizeof(t_list));
 	if(!(check_all(argc, argv, &game)))
 		return (0);
+	sound((char **)audio);
 	game.coins += 1;
 	game.d_img = 1;
 	win_size(&game);
 	game.mlx = mlx_init();
-	game.mlx_win = mlx_new_window(game.mlx, game.win_width * 64, game.win_height * 64, "SO LONG");
+	game.mlx_win = mlx_new_window(game.mlx, game.win_width * 64, game.win_height * 64, "Hearteater");
 	wall(&game, -1, 0);
 	girl_render(&game);
 	draw_text(&game);
