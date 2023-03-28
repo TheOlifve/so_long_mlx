@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-int	map_valid(char **map, int i, int j)
+int	map_valid(t_list *game, char **map, int i, int j)
 {
 	char	s[1];
 
@@ -22,6 +22,11 @@ int	map_valid(char **map, int i, int j)
 		while (map[i][j])
 		{
 			s[0] = map[i][j];
+			if (map[i][j] == 'E')
+			{
+				game->door_x = i;
+				game->door_y = j;
+			}
 			if (s[0] == '0' || s[0] == '1' || s[0] == 'P' || s[0] == '\n'
 				|| s[0] == 'C' || s[0] == 'E' || s[0] == 'N')
 				j++;
@@ -33,7 +38,7 @@ int	map_valid(char **map, int i, int j)
 	return (1);
 }
 
-int	map_components(char **map, int i, int j)
+int	map_components(char **map, int i, int j, t_list *game)
 {
 	int	sym[3];
 
@@ -45,9 +50,13 @@ int	map_components(char **map, int i, int j)
 		while (map[i][++j])
 		{
 			if (map[i][j] == 'P')
+			{
+				game->p_x = i;
+				game->p_y = j;
 				sym[0]++;
+			}
 			else if (map[i][j] == 'C')
-				sym[1]++;
+				game->coins = sym[1]++;
 			else if (map[i][j] == 'E')
 				sym[2]++;
 		}
@@ -84,13 +93,13 @@ int	map_walls(char **map, int i, int j)
 	return (1);
 }
 
-int	check_map(char **map)
+int	check_map(char **map, t_list *game)
 {
 	if (!map_walls(map, -1, 0))
 		return (0);
-	if (!map_valid(map, -1, 0))
+	if (!map_valid(game, map, -1, 0))
 		return (0);
-	if (!map_components(map, -1, -1))
+	if (!map_components(map, -1, -1, game))
 		return (0);
 	return (1);
 }
@@ -105,10 +114,9 @@ int	check_all(int argc, char **argv, t_list *game)
 	if (!ft_strrncmp(argv[1]))
 		return (ft_error_print("ERROR - Wrong file type (should be .ber)"));
 	map = map_r(argv[1]);
-	//if (!map)
-	//	return (ft_error_print("ERROR - Empty map"));
-	if (!map || !check_map(map))
+	if (!map || !check_map(map, game))
 		return (ft_error_print("ERROR - Wrong map"));
+	game->coins = game->coins - 1;
 	game->map = map;
 	return (1);
 }

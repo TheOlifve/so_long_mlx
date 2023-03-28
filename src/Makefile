@@ -17,7 +17,16 @@ SRC =	check.c				\
 		ft_error_print.c	\
 		win.c				\
 		map.c				\
-		imgadd.c			\
+		walls.c				\
+		player_move.c		\
+		empty.c				\
+		move_r.c			\
+		move_l.c			\
+		move_u.c 			\
+		move_d.c 			\
+		anim.c				\
+		door.c				\
+		girl.c
 
 OBJ = $(SRC:.c=.o)
 
