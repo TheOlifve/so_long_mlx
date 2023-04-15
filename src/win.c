@@ -14,16 +14,16 @@
 
 void	win_size(t_list *game)
 {
-	char **map;
-	int	i;
-	int	j;
+	char	**map;
+	int		i;
+	int		j;
 
 	map = game->map;
 	i = 0;
 	j = 0;
-	while(map[i][j])
+	while (map[i][j])
 		j++;
-	while(map[i])
+	while (map[i])
 		i++;
 	game->win_height = i;
 	game->win_width = j;

@@ -24,6 +24,6 @@ void	empty_add(t_list *game)
 void	empty(t_list *game, int i, int j)
 {
 	empty_add(game);
-    mlx_put_image_to_window(game->mlx,
-			game->mlx_win, game->empty, j * 64, i * 64);
+	mlx_put_image_to_window(game->mlx,
+		game->mlx_win, game->empty, j * 64, i * 64);
 }

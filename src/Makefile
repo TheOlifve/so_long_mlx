@@ -26,7 +26,6 @@ SRC =	check.c				\
 		move_d.c 			\
 		anim.c				\
 		door.c				\
-		sound.c 			\
 		girl.c
 
 OBJ = $(SRC:.c=.o)

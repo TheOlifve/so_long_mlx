@@ -13,13 +13,14 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# if defined(__APPLE__)
-#  define AUDIO "/usr/bin/afplay", "--volume", "1"
-#endif
+# ifdef __APPLE__
+#  define AUDIO "/usr/bin/afplay"
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <signal.h>
 # include <stdio.h>
 # include <string.h>
 # include "./utils/utils.h"
@@ -28,12 +29,13 @@
 typedef struct s_list {
 	void	*mlx;
 	void	*mlx_win;
+	int		player_pid;
 	int		win_width;
 	int		win_height;
 	int		coins;
 	int		p_x;
 	int		p_y;
-	int32_t				pid;
+	int32_t	pid;
 	int		door_x;
 	int		door_y;
 	int		score;
@@ -70,11 +72,11 @@ typedef struct s_list {
 	void	*exit;
 }				t_list;
 
-void	sound(char *args[]);
+int		ft_exit(t_list *game);
 int		check_all(int argc, char **argv, t_list *game);
 int		ft_error_print(char *str);
 char	**map_r(char *file);
-void    door(t_list *game);
+void	door(t_list *game);
 int		map_line_len(char **map, int len);
 void	win_size(t_list *game);
 void	img_add(t_list *game);
@@ -82,8 +84,8 @@ void	empty(t_list *game, int i, int j);
 void	wall(t_list *game, int i, int j);
 void	girl_render(t_list *game);
 int		key_press(int key, t_list *game);
-void 	move_right(t_list *game, int i, int j);
-void 	move_left(t_list *game, int i, int j);
+void	move_right(t_list *game, int i, int j);
+void	move_left(t_list *game, int i, int j);
 void	move_up(t_list *game, int i, int j);
 void	move_down(t_list *game, int i, int j);
 void	draw_text(t_list *game);

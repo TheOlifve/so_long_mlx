@@ -19,7 +19,6 @@ char	**map_r(char *file)
 	char	**map;
 	int		fd;
 
-
 	fd = open(file, O_RDONLY);
 	if (!fd)
 		return (NULL);

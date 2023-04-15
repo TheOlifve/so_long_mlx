@@ -108,7 +108,6 @@ int	check_all(int argc, char **argv, t_list *game)
 {
 	char	**map;
 
-
 	if (argc != 2)
 		return (ft_error_print("ERROR - Wrong number of parameters"));
 	if (!ft_strrncmp(argv[1]))
