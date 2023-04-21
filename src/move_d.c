@@ -32,6 +32,7 @@ void	loot_coin_d(t_list *game, int i, int j)
 		loot_dcoin_d(game, i, j);
 	else if (game->map[i][j] == 'C')
 	{
+		printf("\n!\n");
 		game->map[i][j] = '7';
 		game->coins -= 1;
 		empty(game, i - 1, j);
@@ -43,27 +44,32 @@ void	loot_coin_d(t_list *game, int i, int j)
 	}
 	else if (game->map[i - 1][j] == '7')
 	{
-		i -= 1;
-		empty(game, i, j);
 		mlx_put_image_to_window(game->mlx,
 			game->mlx_win, game->hb, j * 64, i * 64);
+		empty(game, i - 1, j);
 		mlx_put_image_to_window(game->mlx,
-			game->mlx_win, game->g_front2, j * 64, (i + 1) * 64);
+			game->mlx_win, game->hb, j * 64, (i - 1) * 64);
+		mlx_put_image_to_window(game->mlx,
+			game->mlx_win, game->g_front2, j * 64, i * 64);
 	}
 }
 
 void	move_down(t_list *game, int i, int j)
 {
-	game->score += 1;
 	i += 1;
 	if (game->map[i][j] == 'N' || (game->map[i][j] == 'E'
 		&& game->coins == 0))
 		ft_exit(game);
 	if (game->map[i][j] != '1' && (game->map[i][j] == 'C'
 		|| game->map[i - 1][j] == '7'))
+	{
+		game->score += 1;
+		empty(game, i, j);
 		loot_coin_d(game, i, j);
+	}
 	else if (game->map[i][j] != '1')
 	{
+		game->score += 1;
 		game->p_x = i;
 		empty(game, i - 1, j);
 		if (game->map[i - 1][j] == 'E' && game->coins > 0)

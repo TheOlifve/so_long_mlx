@@ -115,6 +115,8 @@ int	check_all(int argc, char **argv, t_list *game)
 	map = map_r(argv[1]);
 	if (!map || !check_map(map, game))
 		return (ft_error_print("ERROR - Wrong map"));
+	//if (!logic(game))
+	//	return (ft_error_print("ERROR - Wrong map"));
 	game->coins = game->coins - 1;
 	game->map = map;
 	return (1);

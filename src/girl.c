@@ -26,11 +26,9 @@ void	girl_add(t_list *game)
 	game->g_b2 = mlx_xpm_file_to_image(game->mlx,
 			"sprites/girl/g_b2.xpm", &i, &j);
 	game->h1 = mlx_xpm_file_to_image(game->mlx,
-			"sprites/heart/h1.xpm", &i, &j);
-	game->h2 = mlx_xpm_file_to_image(game->mlx,
-			"sprites/heart/h2.xpm", &i, &j);
-	game->hb = mlx_xpm_file_to_image(game->mlx,
 			"sprites/heart/hb.xpm", &i, &j);
+	game->hb = mlx_xpm_file_to_image(game->mlx,
+			"sprites/heart/h1.xpm", &i, &j);
 	game->door1 = mlx_xpm_file_to_image(game->mlx,
 			"sprites/walls/door_o1.xpm", &i, &j);
 	game->flw = mlx_xpm_file_to_image(game->mlx,

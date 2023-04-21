@@ -54,5 +54,9 @@ int	key_press(int key, t_list *game)
 	else if (key == 53)
 		ft_exit(game);
 	draw_text(game);
+	int k = -1;
+	while (game->map[++k])
+		printf ("%s\n", game->map[k]);
+	printf ("\n\n");
 	return (0);
 }

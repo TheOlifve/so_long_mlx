@@ -54,16 +54,20 @@ void	loot_coin_u(t_list *game, int i, int j)
 
 void	move_up(t_list *game, int i, int j)
 {
-	game->score += 1;
 	i -= 1;
 	if (game->map[i][j] == 'N' || (game->map[i][j] == 'E'
 		&& game->coins == 0))
 		ft_exit(game);
 	if (game->map[i][j] != '1' && (game->map[i][j] == 'C'
 		|| game->map[i + 1][j] == '7'))
-		loot_coin_u(game, i, j);
+		{
+			empty(game, i, j);
+			loot_coin_u(game, i, j);
+			game->score += 1;
+		}
 	else if (game->map[i][j] != '1')
 	{
+		game->score += 1;
 		game->p_x = i;
 		empty(game, i + 1, j);
 		if (game->map[i + 1][j] == 'E' && game->coins > 0)

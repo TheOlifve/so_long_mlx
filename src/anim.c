@@ -29,6 +29,7 @@ int	d_anim(t_list *game, int k)
 		game->door = game->door6;
 		return (1);
 	}
+	k++;
 	return (k);
 }
 
@@ -42,7 +43,6 @@ int	anim(t_list *game)
 
 	i = game->door_x;
 	j = game->door_y;
-	x = -1;
 	y = -1;
 	while (game->map[++y])
 	{
@@ -54,7 +54,9 @@ int	anim(t_list *game)
 				game->door = game->door1;
 			mlx_put_image_to_window(game->mlx,
 				game->mlx_win, game->door, j * 64, i * 64);
-			k++;
+			if (game->p_x == i && game->p_y == j)
+				mlx_put_image_to_window(game->mlx,
+					game->mlx_win, game->g_b2, j * 64, i * 64);
 		}
 	}
 	return (0);

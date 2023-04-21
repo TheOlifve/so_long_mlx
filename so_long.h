@@ -45,7 +45,6 @@ typedef struct s_list {
 
 	void	*hb;
 	void	*h1;
-	void	*h2;
 	void	*empty;
 	void	*door;
 	void	*door2;
@@ -91,5 +90,6 @@ void	move_down(t_list *game, int i, int j);
 void	draw_text(t_list *game);
 void	wall_add(t_list *game);
 int		anim(t_list *game);
+int		logic(t_list *game);
 
 #endif
